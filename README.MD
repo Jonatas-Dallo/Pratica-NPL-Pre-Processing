@@ -1,7 +1,6 @@
 # Projeto de prática de pos_tagging com frontend simples, onde ao colocar uma frase ela exibe a tag de cada palavra em inglês e português
 
-
-
+### Como Rodar
 - python -m venv venv
 - venv\Scripts\activate 
 - python app.py
