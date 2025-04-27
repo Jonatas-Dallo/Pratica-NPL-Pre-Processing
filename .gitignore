@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+VENV/
+*.env
+*.venv
+
+# Flask specific
+instance/
+.webassets-cache
+
+# VSCode configs (se usar)
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Frontend cache
+node_modules/
+dist/
+build/
+
+# Log files
+*.log
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# mypy
+.mypy_cache/
+
+# local server output
+*.sqlite3

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Classificador de Palavras</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        textarea { width: 100%; height: 100px; margin-bottom: 10px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        ul { list-style-type: none; padding-left: 0; }
+        li { margin-bottom: 5px; }
+        .classe { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Classificador de Palavras</h1>
+
+    <textarea id="entrada" placeholder="Digite sua frase aqui..."></textarea><br>
+    <button onclick="analisar()">Analisar</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        async function analisar() {
+            const texto = document.getElementById('entrada').value;
+            if (!texto.trim()) {
+                alert('Por favor, digite alguma frase.');
+                return;
+            }
+
+            const resposta = await fetch('http://127.0.0.1:5000/analisar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ texto })
+            });
+
+            const dados = await resposta.json();
+
+            let html = '<h2>Resultados:</h2>';
+
+            dados.forEach(fraseObj => {
+                html += `<p><strong>Frase:</strong> ${fraseObj.frase}</p><ul>`;
+
+                fraseObj.tokens.forEach(token => {
+                    html += `<li>${token.palavra}: <span class="classe">${token.classe}</span> / ${token.classe_pt}</li>`;
+                });
+
+                html += `</ul>`;
+            });
+
+            document.getElementById('resultado').innerHTML = html;
+        }
+    </script>
+
+</body>
+</html>
